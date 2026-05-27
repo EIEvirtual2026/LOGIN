@@ -273,8 +273,8 @@
                             </div>
                             <div class="grid grid-cols-2 gap-3">
                                 <div class="data-display-box">
-                                    <span class="text-[10px] text-yellow-500 font-bold uppercase">Nivel / Rango</span>
-                                    <p id="res-nivel" class="text-yellow-500 font-bold text-sm uppercase">-</p>
+                                    <span class="text-[10px] text-yellow-500 font-bold uppercase">Filial</span>
+                                    <p id="res-filial" class="text-white font-semibold text-sm uppercase">-</p>
                                 </div>
                                 <div class="data-display-box">
                                     <span class="text-[10px] text-yellow-500 font-bold uppercase">Libro (Book)</span>
@@ -283,12 +283,41 @@
                             </div>
                             <div class="grid grid-cols-2 gap-3">
                                 <div class="data-display-box">
-                                    <span class="text-[10px] text-yellow-500 font-bold uppercase">Fecha</span>
-                                    <p id="res-fecha" class="text-white font-semibold text-sm">-</p>
+                                    <span class="text-[10px] text-yellow-500 font-bold uppercase">Nivel</span>
+                                    <p id="res-nivel" class="text-yellow-500 font-bold text-sm uppercase">-</p>
                                 </div>
-                                <div class="data-display-box border-yellow-500 bg-yellow-500/10">
-                                    <span class="text-[10px] text-yellow-600 font-black uppercase">Nota Final</span>
-                                    <p id="res-nota" class="text-yellow-500 font-black text-xl">-</p>
+                                <div class="data-display-box">
+                                    <span class="text-[10px] text-yellow-500 font-bold uppercase">Condición</span>
+                                    <p id="res-condicion" class="text-white font-bold text-sm uppercase">-</p>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-3 gap-3 pt-2">
+                                <div class="data-display-box">
+                                    <span class="text-[10px] text-yellow-500 font-bold uppercase">Nota Base</span>
+                                    <p id="res-nota-base" class="text-white font-black text-lg">-</p>
+                                    <p id="res-estado-base" class="text-[10px] font-bold uppercase mt-1">-</p>
+                                </div>
+                                <div class="data-display-box">
+                                    <span class="text-[10px] text-yellow-500 font-bold uppercase">Rezagado</span>
+                                    <p id="res-nota-rez" class="text-white font-black text-lg">-</p>
+                                    <p id="res-estado-rez" class="text-[10px] font-bold uppercase mt-1">-</p>
+                                </div>
+                                <div class="data-display-box">
+                                    <span class="text-[10px] text-yellow-500 font-bold uppercase">Retest</span>
+                                    <p id="res-nota-ret" class="text-white font-black text-lg">-</p>
+                                    <p id="res-estado-ret" class="text-[10px] font-bold uppercase mt-1">-</p>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3 pt-2">
+                                <div class="data-display-box">
+                                    <span class="text-[10px] text-yellow-500 font-bold uppercase">Hora Ingreso</span>
+                                    <p id="res-h-ini" class="text-white text-xs">-</p>
+                                </div>
+                                <div class="data-display-box">
+                                    <span class="text-[10px] text-yellow-500 font-bold uppercase">Hora Finalización</span>
+                                    <p id="res-h-fin" class="text-white text-xs">-</p>
                                 </div>
                             </div>
                         </div>
@@ -303,22 +332,22 @@
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzgaFqolwi59Dk7FoDdJD0Ts8tHoUA-E33Zb6zofslI9ink30dWUyS3EALFvpDT7zLcRA/exec";
         
         const EXAM_LINKS = {
-            "0":   "https://eievirtual2026.github.io/BOOK_2/",	 "0.1": "https://eievirtual2026.github.io/PORTUGUES_1/",
-			"1":   "https://eievirtual2026.github.io/BOOK_4/",   "1.1": "https://eievirtual2026.github.io/BOOK_4./", "1.2": "https://eievirtual2026.github.io/BOOK_4../", "1.3": "https://eievirtual2026.github.io/BOOK_4.../", "1.4": "https://eievirtualfiliales.github.io/BOOK_4/", "1.5": "https://eievirtualfiliales.github.io/BOOK_4./", "1.6": "https://eievirtualfiliales.github.io/BOOK_4../", "1.7": "https://eievirtualfiliales.github.io/BOOK_4.../",  
-            "2":   "https://eievirtual2026.github.io/BOOK_10/",   "2.1": "https://eievirtual2026.github.io/BOOK_10./", "2.2": "https://eievirtualfiliales.github.io/BOOK_10/", "2.3": "https://eievirtualfiliales.github.io/BOOK_10./",
-            "3":   "https://eievirtual2026.github.io/BOOK_16/",   "3.1": "https://eievirtual2026.github.io/BOOK_16./", "3.2": "https://eievirtualfiliales.github.io/BOOK_16/", "3.3": "https://eievirtualfiliales.github.io/BOOK_16./",
-            "4":   "https://eievirtual2026.github.io/BOOK_22/",   "4.1": "https://eievirtual2026.github.io/BOOK_22./", "4.2": "https://eievirtualfiliales.github.io/BOOK_22/", "4.3": "https://eievirtualfiliales.github.io/BOOK_22./",
-            "5":   "https://eievirtual2026.github.io/BOOK_28/",  "5.1": "https://eievirtual2026.github.io/BOOK_28./", "5.2": "https://eievirtualfiliales.github.io/BOOK_28/", "5.3": "https://eievirtualfiliales.github.io/BOOK_28./"
+            "0":   "https://eievirtual2026.github.io/BOOK_3/",	 "0.1": "https://eievirtual2026.github.io/PORTUGUES_2/",
+			"1":   "https://eievirtual2026.github.io/BOOK_5/",   "1.1": "https://eievirtual2026.github.io/BOOK_5./", "1.2": "https://eievirtual2026.github.io/BOOK_5../", "1.3": "https://eievirtual2026.github.io/BOOK_5.../", "1.4": "https://eievirtualfiliales.github.io/BOOK_5/", "1.5": "https://eievirtualfiliales.github.io/BOOK_5./", "1.6": "https://eievirtualfiliales.github.io/BOOK_5../", "1.7": "https://eievirtualfiliales.github.io/BOOK_5.../",  
+            "2":   "https://eievirtual2026.github.io/BOOK_11/",   "2.1": "https://eievirtual2026.github.io/BOOK_11./", "2.2": "https://eievirtualfiliales.github.io/BOOK_11/", "2.3": "https://eievirtualfiliales.github.io/BOOK_11./",
+            "3":   "https://eievirtual2026.github.io/BOOK_17/",   "3.1": "https://eievirtual2026.github.io/BOOK_17./", "3.2": "https://eievirtualfiliales.github.io/BOOK_17/", "3.3": "https://eievirtualfiliales.github.io/BOOK_17./",
+            "4":   "https://eievirtual2026.github.io/BOOK_23/",   "4.1": "https://eievirtual2026.github.io/BOOK_23./", "4.2": "https://eievirtualfiliales.github.io/BOOK_23/", "4.3": "https://eievirtualfiliales.github.io/BOOK_23./",
+            "5":   "https://eievirtual2026.github.io/BOOK_29/",  "5.1": "https://eievirtual2026.github.io/BOOK_29./", "5.2": "https://eievirtualfiliales.github.io/BOOK_29/", "5.3": "https://eievirtualfiliales.github.io/BOOK_29./"
 			
         };
 
         const EXAM_LABELS = {
-            "0": "TEST BOOK 2", "0.1": "PORTUGUES_1",
-			"1": "TEST BOOK 4", "1.1": "TEST BOOK 4", "1.2": "TEST BOOK 4", "1.3": "TEST BOOK 4", "1.4": "TEST BOOK 4", "1.5": "TEST BOOK 4", "1.6": "TEST BOOK 4", "1.7": "TEST BOOK 4",
-            "2": "TEST BOOK 10", "2.1": "TEST BOOK 10", "2.2": "TEST BOOK 10", "2.3": "TEST BOOK 10",
-            "3": "TEST BOOK 16", "3.1": "TEST BOOK 16", "3.2": "TEST BOOK 16", "3.3": "TEST BOOK 16",
-            "4": "TEST BOOK 22", "4.1": "TEST BOOK 22", "4.2": "TEST BOOK 22", "4.3": "TEST BOOK 22",
-            "5": "TEST BOOK 28", "5.1": "TEST BOOK 28", "5.2": "TEST BOOK 28", "5.3": "TEST BOOK 28"
+            "0": "TEST BOOK 3", "0.1": "PORTUGUES_2",
+			"1": "TEST BOOK 5", "1.1": "TEST BOOK 5", "1.2": "TEST BOOK 5", "1.3": "TEST BOOK 5", "1.4": "TEST BOOK 5", "1.5": "TEST BOOK 5", "1.6": "TEST BOOK 5", "1.7": "TEST BOOK 5",
+            "2": "TEST BOOK 11", "2.1": "TEST BOOK 11", "2.2": "TEST BOOK 11", "2.3": "TEST BOOK 11",
+            "3": "TEST BOOK 17", "3.1": "TEST BOOK 17", "3.2": "TEST BOOK 17", "3.3": "TEST BOOK 17",
+            "4": "TEST BOOK 23", "4.1": "TEST BOOK 23", "4.2": "TEST BOOK 23", "4.3": "TEST BOOK 23",
+            "5": "TEST BOOK 29", "5.1": "TEST BOOK 29", "5.2": "TEST BOOK 29", "5.3": "TEST BOOK 29"
         };
 
         function closeModal() { 
@@ -358,22 +387,46 @@
                 if(data.status === "success") {
                     document.getElementById('ci-exam').disabled = true;
                     document.getElementById('exam-name').innerText = data.nombre;
-                    document.getElementById('exam-course').innerText = data.curso;
+                    document.getElementById('exam-course').innerText =
+                        `${data.curso || ''}  |  Filial: ${data.filial || '-'}  |  Condición: ${data.condicion || 'NORMAL'}`;
                     document.getElementById('exam-data-display').classList.remove('hidden');
                     document.getElementById('btn-reset-exam').classList.remove('hidden'); // Mostrar botón volver
 
-                    if(data.nota && data.nota !== "" && data.nota !== 0) {
-                        document.getElementById('exam-done-detail').innerText = `Nota: ${data.nota} - Fecha: ${data.fecha}`;
+                    // Determinar qué examen corresponde según la Condición (col I)
+                    const cond = (data.condicion || "NORMAL").toString().toUpperCase().trim();
+                    let notaActual = "", estadoActual = "", etiquetaCond = "";
+                    if (cond === "REZAGADO") {
+                        notaActual = data.nota_rezagado;
+                        estadoActual = data.estado_rezagado;
+                        etiquetaCond = "REZAGADO";
+                    } else if (cond === "RETEST") {
+                        notaActual = data.nota_retest;
+                        estadoActual = data.estado_retest;
+                        etiquetaCond = "RETEST";
+                    } else {
+                        notaActual = data.nota_base;
+                        estadoActual = data.estado_base;
+                        etiquetaCond = "BASE";
+                    }
+
+                    const yaRindio = (estadoActual && estadoActual.toString().trim() !== "") ||
+                                     (notaActual && notaActual !== 0 && notaActual !== "");
+
+                    if (yaRindio) {
+                        document.getElementById('exam-done-detail').innerText =
+                            `Examen ${etiquetaCond} - Nota: ${notaActual || '-'} - Estado: ${estadoActual || '-'} - Fecha: ${data.hora_finalizacion || data.fecha || '-'}`;
                         document.getElementById('exam-done-msg').classList.remove('hidden');
                         document.getElementById('btn-verify-exam').classList.add('hidden');
                     } else {
                         const key = data.book_key.toString().trim();
                         const link = EXAM_LINKS[key];
-                        const label = EXAM_LABELS[key] || "INICIAR EVALUACIÓN";
+                        const label = (EXAM_LABELS[key] || "EVALUACIÓN") + " (" + etiquetaCond + ")";
 
                         if(link) {
                             const btnExam = document.getElementById('link-start-exam');
-                            btnExam.href = link;
+                            // Enviamos ci y modo al examen para que el backend sepa qué columnas escribir
+                            const sep = link.includes('?') ? '&' : '?';
+                            btnExam.href = `${link}${sep}ci=${encodeURIComponent(ci)}&modo=${encodeURIComponent(cond)}`;
                             btnExam.innerHTML = `<i class="fas fa-play-circle"></i> INICIAR ${label}`;
                             btnExam.classList.remove('hidden');
                             document.getElementById('btn-verify-exam').classList.add('hidden');
@@ -406,11 +459,32 @@
 
                 if(data.status === "success") { 
                     document.getElementById('res-nombre').innerText = data.nombre;
-                    const bookNum = parseFloat(data.book_key) || 0;
+                    const bookNum = parseFloat(data.libro) || 0;
                     document.getElementById('res-libro').innerText = "BOOK " + bookNum;
-                    document.getElementById('res-fecha').innerText = data.fecha || "---";
-                    document.getElementById('res-nota').innerText = data.nota || "Pte.";
-                    
+                    document.getElementById('res-filial').innerText = data.filial || "---";
+                    document.getElementById('res-condicion').innerText = data.condicion || "NORMAL";
+
+                    const setEstado = (elId, val) => {
+                        const el = document.getElementById(elId);
+                        const v = (val || "").toString().toUpperCase().trim();
+                        el.innerText = v || "PENDIENTE";
+                        el.classList.remove('text-green-400','text-red-400','text-yellow-500','text-slate-400');
+                        if (v === "APROBADO") el.classList.add('text-green-400');
+                        else if (v === "REPROBADO") el.classList.add('text-red-400');
+                        else if (v) el.classList.add('text-yellow-500');
+                        else el.classList.add('text-slate-400');
+                    };
+
+                    document.getElementById('res-nota-base').innerText = data.nota_base || "-";
+                    setEstado('res-estado-base', data.estado_base);
+                    document.getElementById('res-nota-rez').innerText = data.nota_rezagado || "-";
+                    setEstado('res-estado-rez', data.estado_rezagado);
+                    document.getElementById('res-nota-ret').innerText = data.nota_retest || "-";
+                    setEstado('res-estado-ret', data.estado_retest);
+
+                    document.getElementById('res-h-ini').innerText = data.hora_ingreso || "---";
+                    document.getElementById('res-h-fin').innerText = data.hora_finalizacion || "---";
+
                     let nivelTexto = "";
                     if(bookNum >= 1 && bookNum <= 6) nivelTexto = "NIVEL I";
                     else if(bookNum >= 7 && bookNum <= 12) nivelTexto = "NIVEL II";
