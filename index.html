@@ -186,9 +186,10 @@
 					1. Si dará el examen en un dispositivo móvil deberá activar la opción SITIO PARA COMPUTADORA y subir el volumen al maximo.<br>
                     2. Introduzca su Cedula de Identidad para verificar sus datos.<br>
                     3. Una vez verificado sus datos podrá empezar con el examen.<br>
-					4. En el caso de haber realizado su examen se le mostrara su nota obtenida.<br>
-					5. Si se habilita la opción de Iniciar Test, presione Iniciar.<br>
-                    6. Si tiene algún inconveniente comuníquese con el Cel. 67336593.
+					4. Se habilitó el acceso al libro digital.<br>
+					5. En el caso de haber realizado su examen se le mostrara su nota obtenida.<br>
+					6. Si se habilita la opción de Iniciar Test, presione Iniciar.<br>
+                    7. Si tiene algún inconveniente comuníquese con el Cel. 67336593.
                 </p>
             </div>
             <button onclick="closeModal()" class="btn-gold px-10 py-4 text-sm w-full md:w-auto">ACEPTAR Y CONTINUAR</button>
@@ -244,6 +245,10 @@
 
                     <a id="link-start-exam" href="#" target="_blank" class="hidden btn-gold w-full py-5 text-lg flex items-center justify-center gap-4 bg-green-600" style="background: #16a34a !important;">
                         <i class="fas fa-play-circle"></i> INICIAR EXAMEN
+                    </a>
+
+                    <a id="link-libro-digital" href="#" target="_blank" class="hidden btn-gold w-full py-5 text-lg flex items-center justify-center gap-4" style="background: #2563eb !important;">
+                        <i class="fas fa-book-open"></i> ACCEDER AL LIBRO DIGITAL
                     </a>
 
                     <div id="exam-done-msg" class="hidden w-full p-4 bg-red-500/20 border border-red-500 rounded-xl text-center">
@@ -350,6 +355,40 @@
             "5": "TEST BOOK 29", "5.1": "TEST BOOK 29", "5.2": "TEST BOOK 29", "5.3": "TEST BOOK 29"
         };
 
+        // Links de Libros Digitales segun columna H (libro_digital), del 1 al 30
+        const LIBRO_LINKS = {
+            1:  "https://eievirtual2026.github.io/LIBRO_1/",
+            2:  "https://eievirtual2026.github.io/LIBRO_2/",
+            3:  "https://eievirtual2026.github.io/LIBRO_3/",
+            4:  "https://eievirtual2026.github.io/LIBRO_4/",
+            5:  "https://eievirtual2026.github.io/LIBRO_5/",
+            6:  "https://eievirtual2026.github.io/LIBRO_6/",
+            7:  "https://eievirtual2026.github.io/LIBRO_7/",
+            8:  "https://eievirtual2026.github.io/LIBRO_8/",
+            9:  "https://eievirtual2026.github.io/LIBRO_9/",
+            10: "https://eievirtual2026.github.io/LIBRO_10/",
+            11: "https://eievirtual2026.github.io/LIBRO_11/",
+            12: "https://eievirtual2026.github.io/LIBRO_12/",
+            13: "https://eievirtual2026.github.io/LIBRO_13/",
+            14: "https://eievirtual2026.github.io/LIBRO_14/",
+            15: "https://eievirtual2026.github.io/LIBRO_15/",
+            16: "https://eievirtual2026.github.io/LIBRO_16/",
+            17: "https://eievirtual2026.github.io/LIBRO_17/",
+            18: "https://eievirtual2026.github.io/LIBRO_18/",
+            19: "https://eievirtual2026.github.io/LIBRO_19/",
+            20: "https://eievirtual2026.github.io/LIBRO_20/",
+            21: "https://eievirtual2026.github.io/LIBRO_21/",
+            22: "https://eievirtual2026.github.io/LIBRO_22/",
+            23: "https://eievirtual2026.github.io/LIBRO_23/",
+            24: "https://eievirtual2026.github.io/LIBRO_24/",
+            25: "https://eievirtual2026.github.io/LIBRO_25/",
+            26: "https://eievirtual2026.github.io/LIBRO_26/",
+            27: "https://eievirtual2026.github.io/LIBRO_27/",
+            28: "https://eievirtual2026.github.io/LIBRO_28/",
+            29: "https://eievirtual2026.github.io/LIBRO_29/",
+            30: "https://eievirtual2026.github.io/LIBRO_30/"
+        };
+
         function closeModal() { 
             document.getElementById('welcome-modal').style.display = 'none'; 
             document.body.style.overflow = 'auto';
@@ -362,6 +401,7 @@
             ciInput.disabled = false;
             document.getElementById('exam-data-display').classList.add('hidden');
             document.getElementById('link-start-exam').classList.add('hidden');
+            document.getElementById('link-libro-digital').classList.add('hidden');
             document.getElementById('exam-done-msg').classList.add('hidden');
             document.getElementById('btn-reset-exam').classList.add('hidden');
             document.getElementById('btn-verify-exam').classList.remove('hidden');
@@ -377,6 +417,7 @@
             
             document.getElementById('exam-data-display').classList.add('hidden');
             document.getElementById('link-start-exam').classList.add('hidden');
+            document.getElementById('link-libro-digital').classList.add('hidden');
             document.getElementById('exam-done-msg').classList.add('hidden');
             document.getElementById('btn-reset-exam').classList.add('hidden');
 
@@ -391,6 +432,21 @@
                         `${data.curso || ''}  |  Filial: ${data.filial || '-'}  |  Condición: ${data.condicion || 'NORMAL'}`;
                     document.getElementById('exam-data-display').classList.remove('hidden');
                     document.getElementById('btn-reset-exam').classList.remove('hidden'); // Mostrar botón volver
+
+                    // Mostrar boton del Libro Digital segun columna H (libro_digital)
+                    try {
+                        const libroNum = parseInt(parseFloat(data.libro), 10);
+                        const libroLink = LIBRO_LINKS[libroNum];
+                        const btnLibro = document.getElementById('link-libro-digital');
+                        if (libroLink) {
+                            const sepL = libroLink.includes('?') ? '&' : '?';
+                            btnLibro.href = `${libroLink}${sepL}ci=${encodeURIComponent(ci)}`;
+                            btnLibro.innerHTML = `<i class="fas fa-book-open"></i> ACCEDER AL LIBRO ${libroNum}`;
+                            btnLibro.classList.remove('hidden');
+                        } else {
+                            btnLibro.classList.add('hidden');
+                        }
+                    } catch(_) {}
 
                     // Determinar qué examen corresponde según la Condición (col I)
                     const cond = (data.condicion || "NORMAL").toString().toUpperCase().trim();
