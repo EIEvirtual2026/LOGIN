@@ -238,8 +238,13 @@
             <h2 class="text-2xl md:text-3xl font-black mb-6 text-yellow-500 uppercase" style="font-family: 'Syncopate';">COMUNICADO</h2>
             <div class="space-y-4 px-6 text-slate-100 text-lg text-justify mb-10">
                 <p class="italic leading-relaxed text-center">
-                    SE COMUNICA AL PERSONAL DE ESTUDIANTES DE LA EIE. .<br>
-                    CON LA FINALIDAD DE EVITAR INCONVENIENTES EN SUS EVALUACIONES, DEBERÁN ESTAR AL DÍA CON SUS COMPROMISOS DE PAGO CON LA UNIDAD ACADÉMICA.<br>
+                    SE DEBE TOMAR EN CUENTA LA SIGUIENTE ESCALA DE CALIFICACIONES.<br>
+					PROMEDIO ALCPT<br>
+					NINEL I (NOTA MAXIMA 29 = 100)<br>
+					NINEL II (NOTA MAXIMA 51 = 100)<br>
+					NINEL III (NOTA MAXIMA 63 = 100)<br>
+					NINEL IV (NOTA MAXIMA 74 = 100)<br>
+					NINEL V (NOTA MAXIMA 81 = 100)
  
                 </p>
             </div>
@@ -345,7 +350,7 @@
                                 </div>
                                 <div class="data-display-box">
                                     <span class="text-[10px] text-yellow-500 font-bold uppercase">Libro (Book)</span>
-                                    <p id="res-libro" class="text-white font-semibold text-sm">-</p>
+                                    <p id="res-book" class="text-white font-semibold text-sm">-</p>
                                 </div>
                             </div>
                             <div class="grid grid-cols-2 gap-3">
@@ -375,6 +380,12 @@
                                     <p id="res-nota-ret" class="text-white font-black text-lg">-</p>
                                     <p id="res-estado-ret" class="text-[10px] font-bold uppercase mt-1">-</p>
                                 </div>
+                            </div>
+
+                            <div class="data-display-box pt-2" style="border:1px solid rgba(251,191,36,0.5); box-shadow:0 0 15px rgba(251,191,36,0.3);">
+                                <span class="text-[11px] text-yellow-500 font-bold uppercase tracking-widest">Nota Final ALCPT</span>
+                                <p id="res-nota-final" class="text-yellow-400 font-black text-3xl mt-1">-</p>
+                                <p id="res-nota-final-detalle" class="text-[10px] text-slate-300 uppercase mt-1">-</p>
                             </div>
 
                             <div class="grid grid-cols-2 gap-3 pt-2">
@@ -583,8 +594,8 @@
 
                 if(data.status === "success") { 
                     document.getElementById('res-nombre').innerText = data.nombre;
-                    const bookNum = parseFloat(data.libro) || 0;
-                    document.getElementById('res-libro').innerText = "BOOK " + bookNum;
+                    const bookNum = parseFloat(data.book) || 0;
+                    document.getElementById('res-book').innerText = "BOOK " + bookNum;
                     document.getElementById('res-filial').innerText = data.filial || "---";
                     document.getElementById('res-condicion').innerText = data.condicion || "NORMAL";
 
@@ -593,8 +604,9 @@
                         const v = (val || "").toString().toUpperCase().trim();
                         el.innerText = v || "PENDIENTE";
                         el.classList.remove('text-green-400','text-red-400','text-yellow-500','text-slate-400');
-                        if (v === "APROBADO") el.classList.add('text-green-400');
-                        else if (v === "REPROBADO") el.classList.add('text-red-400');
+                        // Este examen no tiene nota de reprobación: REPROBADO se trata como APROBADO
+                        if (v === "REPROBADO") { el.innerText = "APROBADO"; el.classList.add('text-green-400'); }
+                        else if (v === "APROBADO") el.classList.add('text-green-400');
                         else if (v) el.classList.add('text-yellow-500');
                         else el.classList.add('text-slate-400');
                     };
@@ -618,6 +630,28 @@
                     else nivelTexto = "EXTERNO";
                     
                     document.getElementById('res-nivel').innerText = nivelTexto;
+
+                    // === Cálculo Nota Final ALCPT (sin nota de reprobación) ===
+                    const maxPorNivel = { "NIVEL I": 29, "NIVEL II": 51, "NIVEL III": 63, "NIVEL IV": 74, "NIVEL V": 81 };
+                    const notas = [
+                        parseFloat(data.nota_base) || 0,
+                        parseFloat(data.nota_rezagado) || 0,
+                        parseFloat(data.nota_retest) || 0
+                    ];
+                    const mejorNota = Math.max(...notas);
+                    const elFinal = document.getElementById('res-nota-final');
+                    const elFinalDet = document.getElementById('res-nota-final-detalle');
+                    if (maxPorNivel[nivelTexto] && mejorNota > 0) {
+                        const max = maxPorNivel[nivelTexto];
+                        const final = mejorNota >= max ? 100 : (mejorNota * 100) / max;
+                        const finalRedondeado = Math.round(final * 100) / 100;
+                        elFinal.innerText = finalRedondeado;
+                        elFinalDet.innerText = `${nivelTexto} · Nota obtenida: ${mejorNota} / Nota Máxima: ${max}`;
+                    } else {
+                        elFinal.innerText = "-";
+                        elFinalDet.innerText = "Sin notas registradas";
+                    }
+
                     panel.classList.remove('hidden');
                     showToast("Resultados encontrados.", "success");
                 } else {
