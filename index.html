@@ -238,13 +238,8 @@
             <h2 class="text-2xl md:text-3xl font-black mb-6 text-yellow-500 uppercase" style="font-family: 'Syncopate';">COMUNICADO</h2>
             <div class="space-y-4 px-6 text-slate-100 text-lg text-justify mb-10">
                 <p class="italic leading-relaxed text-center">
-                    SE DEBE TOMAR EN CUENTA LA SIGUIENTE ESCALA DE CALIFICACIONES.<br>
-					PROMEDIO ALCPT<br>
-					NINEL I (NOTA MAXIMA 29 = 100)<br>
-					NINEL II (NOTA MAXIMA 51 = 100)<br>
-					NINEL III (NOTA MAXIMA 63 = 100)<br>
-					NINEL IV (NOTA MAXIMA 74 = 100)<br>
-					NINEL V (NOTA MAXIMA 81 = 100)
+                    SE COMUNICA AL PERSONAL DE ESTUDIANTES DE LA EIE. .<br>
+                    CON LA FINALIDAD DE EVITAR INCONVENIENTES EN SUS EVALUACIONES, DEBERÁN ESTAR AL DÍA CON SUS COMPROMISOS DE PAGO CON LA UNIDAD ACADÉMICA, EN TAL SENTIDO EL SISTEMA SE ENCONTRARÁ DISPONIBLE HASTA EL 20-JUN-26, HORAS 23:59<br>
  
                 </p>
             </div>
@@ -350,7 +345,7 @@
                                 </div>
                                 <div class="data-display-box">
                                     <span class="text-[10px] text-yellow-500 font-bold uppercase">Libro (Book)</span>
-                                    <p id="res-book" class="text-white font-semibold text-sm">-</p>
+                                    <p id="res-libro" class="text-white font-semibold text-sm">-</p>
                                 </div>
                             </div>
                             <div class="grid grid-cols-2 gap-3">
@@ -380,12 +375,6 @@
                                     <p id="res-nota-ret" class="text-white font-black text-lg">-</p>
                                     <p id="res-estado-ret" class="text-[10px] font-bold uppercase mt-1">-</p>
                                 </div>
-                            </div>
-
-                            <div class="data-display-box pt-2" style="border:1px solid rgba(251,191,36,0.5); box-shadow:0 0 15px rgba(251,191,36,0.3);">
-                                <span class="text-[11px] text-yellow-500 font-bold uppercase tracking-widest">Nota Final ALCPT</span>
-                                <p id="res-nota-final" class="text-yellow-400 font-black text-3xl mt-1">-</p>
-                                <p id="res-nota-final-detalle" class="text-[10px] text-slate-300 uppercase mt-1">-</p>
                             </div>
 
                             <div class="grid grid-cols-2 gap-3 pt-2">
@@ -432,7 +421,7 @@
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzgaFqolwi59Dk7FoDdJD0Ts8tHoUA-E33Zb6zofslI9ink30dWUyS3EALFvpDT7zLcRA/exec";
         
         const EXAM_LINKS = {
-            "0":   "https://eievirtual2026.github.io/BOOK_4/",	 "0.1": "https://eievirtual2026.github.io/PORTUGUES_2/", "0.2": "https://eievirtual2026.github.io/AYMARA/", "0.3": "https://eievirtual2026.github.io/TEST_KIDS/", "0.4": "https://eievirtual2026.github.io/TEST_ALCPT/",
+            "0":   "https://eievirtual2026.github.io/BOOK_4/",	 "0.1": "https://eievirtual2026.github.io/PORTUGUES_2/", "0.2": "https://eievirtual2026.github.io/AYMARA/", "0.3": "https://eievirtual2026.github.io/TEST_KIDS/",
             "1":   "https://eievirtual2026.github.io/BOOK_6/",   "1.1": "https://eievirtual2026.github.io/BOOK_6./", "1.2": "https://eievirtual2026.github.io/BOOK_6../", "1.3": "https://eievirtual2026.github.io/BOOK_6.../", "1.4": "https://eievirtualfiliales.github.io/BOOK_5/", "1.5": "https://eievirtualfiliales.github.io/BOOK_5./", "1.6": "https://eievirtualfiliales.github.io/BOOK_5../", "1.7": "https://eievirtualfiliales.github.io/BOOK_5.../",  
             "2":   "https://eievirtual2026.github.io/BOOK_12/",   "2.1": "https://eievirtual2026.github.io/BOOK_12./", "2.2": "https://eievirtualfiliales.github.io/BOOK_11/", "2.3": "https://eievirtualfiliales.github.io/BOOK_11./",
             "3":   "https://eievirtual2026.github.io/BOOK_18/",   "3.1": "https://eievirtual2026.github.io/BOOK_18./", "3.2": "https://eievirtualfiliales.github.io/BOOK_17/", "3.3": "https://eievirtualfiliales.github.io/BOOK_17./",
@@ -442,7 +431,7 @@
         };
 
         const EXAM_LABELS = {
-            "0": "TEST BOOK 4", "0.1": "PORTUGUES_2", "0.2": "AYMARA", "0.3": "KIDS", "0.4": "ALCPT",
+            "0": "TEST BOOK 4", "0.1": "PORTUGUES_2", "0.2": "AYMARA", "0.3": "KIDS",
             "1": "TEST BOOK 6", "1.1": "TEST BOOK 6", "1.2": "TEST BOOK 6", "1.3": "TEST BOOK 6", "1.4": "TEST BOOK 6", "1.5": "TEST BOOK 6", "1.6": "TEST BOOK 6", "1.7": "TEST BOOK 6",
             "2": "TEST BOOK 12", "2.1": "TEST BOOK 12", "2.2": "TEST BOOK 12", "2.3": "TEST BOOK 12",
             "3": "TEST BOOK 18", "3.1": "TEST BOOK 18", "3.2": "TEST BOOK 18", "3.3": "TEST BOOK 18",
@@ -594,8 +583,8 @@
 
                 if(data.status === "success") { 
                     document.getElementById('res-nombre').innerText = data.nombre;
-                    const bookNum = parseFloat(data.book) || 0;
-                    document.getElementById('res-book').innerText = "BOOK " + bookNum;
+                    const bookNum = parseFloat(data.libro) || 0;
+                    document.getElementById('res-libro').innerText = "BOOK " + bookNum;
                     document.getElementById('res-filial').innerText = data.filial || "---";
                     document.getElementById('res-condicion').innerText = data.condicion || "NORMAL";
 
@@ -604,9 +593,8 @@
                         const v = (val || "").toString().toUpperCase().trim();
                         el.innerText = v || "PENDIENTE";
                         el.classList.remove('text-green-400','text-red-400','text-yellow-500','text-slate-400');
-                        // Este examen no tiene nota de reprobación: REPROBADO se trata como APROBADO
-                        if (v === "REPROBADO") { el.innerText = "APROBADO"; el.classList.add('text-green-400'); }
-                        else if (v === "APROBADO") el.classList.add('text-green-400');
+                        if (v === "APROBADO") el.classList.add('text-green-400');
+                        else if (v === "REPROBADO") el.classList.add('text-red-400');
                         else if (v) el.classList.add('text-yellow-500');
                         else el.classList.add('text-slate-400');
                     };
@@ -630,28 +618,6 @@
                     else nivelTexto = "EXTERNO";
                     
                     document.getElementById('res-nivel').innerText = nivelTexto;
-
-                    // === Cálculo Nota Final ALCPT (sin nota de reprobación) ===
-                    const maxPorNivel = { "NIVEL I": 29, "NIVEL II": 51, "NIVEL III": 63, "NIVEL IV": 74, "NIVEL V": 81 };
-                    const notas = [
-                        parseFloat(data.nota_base) || 0,
-                        parseFloat(data.nota_rezagado) || 0,
-                        parseFloat(data.nota_retest) || 0
-                    ];
-                    const mejorNota = Math.max(...notas);
-                    const elFinal = document.getElementById('res-nota-final');
-                    const elFinalDet = document.getElementById('res-nota-final-detalle');
-                    if (maxPorNivel[nivelTexto] && mejorNota > 0) {
-                        const max = maxPorNivel[nivelTexto];
-                        const final = mejorNota >= max ? 100 : (mejorNota * 100) / max;
-                        const finalRedondeado = Math.round(final * 100) / 100;
-                        elFinal.innerText = finalRedondeado;
-                        elFinalDet.innerText = `${nivelTexto} · Nota obtenida: ${mejorNota} / Nota Máxima: ${max}`;
-                    } else {
-                        elFinal.innerText = "-";
-                        elFinalDet.innerText = "Sin notas registradas";
-                    }
-
                     panel.classList.remove('hidden');
                     showToast("Resultados encontrados.", "success");
                 } else {
